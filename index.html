@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas REBT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+  /* Limpiamos el CSS manual y dejamos que Tailwind haga el trabajo pesado */
+  .card-equal {
+    width: 100%;
+  }
+</style>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <header class="p-4 bg-white shadow">
+    <h1 class="text-2xl font-bold text-gray-800">
+      Herramientas REBT – Baja Tensión
+    </h1>
+    <p class="text-sm text-gray-500">
+      Calculadoras técnicas según el Reglamento Electrotécnico de Baja Tensión
+    </p>
+  </header>
+
+<main class="flex-1 p-6 max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start">
+  
+  
+  <!-- ITC-BT-10 -->
+    <a href="ITC-BT-10.html"
+     class="h-[220px] sm:h-[220px] relative rounded-2xl shadow border overflow-hidden bg-cover bg-center flex flex-col shrink-0"
+     style="background-image: url('img/itc-bt-10.jpg');">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-white p-5 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-lg font-semibold">ITC-BT-10 - Previsión de cargas</h2>
+        <p class="text-sm opacity-90">Previsión de viviendas, locales, garaje y VE.</p>
+      </div>
+      <span class="self-end px-3 py-1 rounded bg-white/80 text-gray-900 text-sm">Abrir</span>
+    </div>
+  </a>
+
+<a href="bt19-aprendizaje.html"
+     class="h-[220px] sm:h-[220px] relative rounded-2xl shadow border overflow-hidden bg-cover bg-center flex flex-col shrink-0"
+     style="background-image: url('img/caida-tension.jpg');">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-white p-5 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-lg font-semibold">ITC-BT-19 - Caída de tensión</h2>
+        <p class="text-sm opacity-90">Cálculo en líneas monofásicas y trifásicas.</p>
+      </div>
+      <span class="self-end px-3 py-1 rounded bg-white/80 text-gray-900 text-sm">Abrir</span>
+    </div>
+  </a>
+
+  <a href="IntensidadNom.html"
+     class="h-[220px] sm:h-[220px] relative rounded-2xl shadow border overflow-hidden bg-cover bg-center flex flex-col shrink-0"
+     style="background-image: url('img/intensidad-potencia.jpg');">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-white p-5 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-lg font-semibold">Intensidad y Potencia</h2>
+        <p class="text-sm opacity-90">Cálculo de Intensidad y Potencia.</p>
+      </div>
+      <span class="self-end px-3 py-1 rounded bg-white/80 text-gray-900 text-sm">Abrir</span>
+    </div>
+  </a>
+
+  <a href="consumo.html"
+     class="h-[220px] sm:h-[220px] relative rounded-2xl shadow border overflow-hidden bg-cover bg-center flex flex-col shrink-0"
+     style="background-image: url('img/consumo.jpg');">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-white p-5 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-lg font-semibold">Consumo Energético</h2>
+        <p class="text-sm opacity-90">Cálculo de consumo energético.</p>
+      </div>
+      <span class="self-end px-3 py-1 rounded bg-white/80 text-gray-900 text-sm">Abrir</span>
+    </div>
+  </a>
+  
+<!-- Cortocircuito -->
+  <div class="h-[220px] sm:h-[220px] bg-white rounded-2xl shadow p-5 border flex flex-col justify-between shrink-0">
+    <div>
+      <h2 class="text-lg font-semibold mb-2">Cortocircuito</h2>
+      <p class="text-sm text-gray-600">Cálculo de corrientes de cortocircuito.</p>
+    </div>
+    <span class="self-end px-3 py-1 rounded bg-gray-100 text-gray-500 text-sm">Próximamente</span>
+  </div>
+
+</main>
+
+    
+    
+
+  </main>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+
+</body>
+</html>

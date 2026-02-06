@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intensidad y Potencia</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+</head>
+
+<body class="bg-gray-100">
+
+<header class="p-4 bg-white shadow sticky top-0 z-10">
+  <h1 class="text-lg font-bold">
+    Cálculo de Intensidad (I) y Potencia (P)
+  </h1>
+</header>
+
+
+
+
+<main class="h-[calc(100dvh-72px)] overflow-y-auto bg-gray-100 p-4">
+
+
+<section class="max-w-md mx-auto">
+  <div class="bg-white p-6 rounded-2xl shadow min-h-full">
+
+   
+
+   
+
+
+<!-- Botón volver -->
+    <div class="mb-4">
+      <a href="index.html" 
+         class="inline-block bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+         ← Volver
+      </a>
+    </div>
+
+
+
+        <div class="col-span-2">
+  <label>¿Qué deseas calcular?</label>
+  <select id="modoCalculo" class="w-full border rounded p-1">
+    <option value="intensidad">Intensidad (I)</option>
+    <option value="potencia">Potencia (P)</option>
+  </select>
+</div>
+
+
+
+
+
+      <!-- Fórmulas -->
+      <div>
+  <h3 class="font-semibold mb-2">Fórmula utilizada</h3>
+
+  <div id="formulaMostrada" class="text-sm">
+  </div>
+</div>
+
+
+      <!-- Tu cálculo -->
+      <div>
+        <h3 class="font-semibold mb-2">Tu cálculo</h3>
+
+        <div class="grid grid-cols-2 gap-3 text-sm">
+
+  <div>
+    <label>Potencia (W)</label>
+    <input id="intP" type="number"
+           class="w-full border rounded p-1 input-clear">
+  </div>
+
+  <div>
+  <label>Intensidad (A)</label>
+  <input id="intI" type="number"
+         class="w-full border rounded p-1 input-clear">
+</div>
+
+
+  <div>
+    <label>Tensión (V)</label>
+    <input id="intU" type="number"
+           class="w-full border rounded p-1 input-clear">
+  </div>
+
+  <!-- SISTEMA -->
+  <div>
+    <label>Sistema</label>
+    <select id="sistema"
+            class="w-full border rounded p-1">
+      <option value="mono">Monofásico</option>
+      <option value="tri">Trifásico</option>
+    </select>
+  </div>
+
+
+<!-- método de instalación-->
+<div class="col-span-2">
+  <label>Método de instalación</label>
+  <select id="metodoInstalacion" class="w-full border rounded p-1">
+    <option value="A">A - Empotrado</option>
+    <option value="B">B - Tubo en pared</option>
+    <option value="C">C - Al aire</option>
+  </select>
+</div>
+
+<div>
+  <label>Nº circuitos agrupados</label>
+  <input id="agrupamiento" type="number"
+         class="w-full border rounded p-1"
+         value="1">
+</div>
+
+
+
+
+
+  <!-- TIPO DE CARGA -->
+  <div>
+    <label>Tipo de carga</label>
+    <select id="tipoCarga"
+            class="w-full border rounded p-1">
+      <option value="resistiva">Resistiva</option>
+      <option value="motor">Motor</option>
+    </select>
+  </div><br>
+
+  <!-- cosφ -->
+<div id="campoCos" class="hidden relative">
+  <label>Factor de potencia (cosφ)</label>
+
+  <input id="cosphi"
+         type="number"
+         step="0.01"
+         min="0"
+         max="1"
+         placeholder="Ej: 0.9"
+         class="w-full border rounded p-2 input-clear">
+
+  <!-- Bandeja desplegable -->
+  <div id="bandejaCos"
+       class="absolute left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg hidden z-20">
+
+    <div class="grid grid-cols-4 gap-2 p-2 text-sm">
+
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="1">1</button>
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="0.95">0.95</button>
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="0.9">0.9</button>
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="0.85">0.85</button>
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="0.8">0.8</button>
+      <button type="button" class="opcionCos bg-gray-100 hover:bg-blue-100 rounded p-1" data-value="0.75">0.75</button>
+
+    </div>
+
+  </div>
+</div><br><br>
+
+
+
+  <!-- η -->
+  <div id="campoRend">
+    <label>Rendimiento (η)</label>
+    <input id="rendimiento"
+           type="number"
+           step="0.01"
+           placeholder="0.9"
+           class="w-full border rounded p-1 input-clear">
+  </div>
+
+</div>
+
+<div class="mt-auto pt-10">
+  
+<hr class="my-4">
+
+<p class="text-lg">
+  Intensidad:
+  <strong class="text-blue-600">
+    <span id="resultadoI">0</span> A
+  </strong>
+</p>
+</div>
+
+      <!-- Explicación -->
+      <div id="explicacionI"
+           class="text-sm text-gray-700 border-t pt-3">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script src="IntensidadNom.js" defer></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+
+</main>

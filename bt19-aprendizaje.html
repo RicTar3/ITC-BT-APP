@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITC-BT-19 · Modo aprendizaje</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+</head>
+
+<body class="bg-gray-100">
+
+<header class="p-2 bg-white shadow sticky top-0 z-10">
+  <h1 class="text-base md:text-sm font-semibold">ITC-BT-19</h1>
+</header>
+
+
+
+
+
+<main class="min-h-[calc(100dvh-72px)] overflow-y-auto snap-y snap-mandatory">
+
+
+  <div class="flex w-full h-full overflow-x-auto snap-x snap-mandatory">
+
+
+  <!-- BLOQUE 1: Datos + Tabla (horizontal) -->
+  <section class="min-w-full snap-start p-4">
+
+    
+
+      <!-- CARD DATOS -->
+      
+        <div class="bg-white p-2 pb-2 rounded-xl shadow space-y-2">
+
+          <!-- TODO TU FORMULARIO EXACTO AQUÍ -->
+
+
+    <!-- Botón volver -->
+    <div>
+      <a href="index.html" 
+         class="inline-block bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+         ← Volver
+      </a>
+    </div>
+
+    <h2 class="font-semibold text-sm">1 · Datos del problema</h2>
+    <h3 class="text-xs text-gray-600">Introduce los datos conocidos y selecciona la incógnita a calcular.</h3>
+
+    
+
+
+
+        <div class="mt-2 text-sm">
+        <label>¿Qué deseas calcular?</label>
+        <select id="buscar" class="w-full border rounded p-1">
+          <option value="">-- Seleccionar --</option>
+          <option value="caida">Caída de tensión (ΔV)</option>
+          <option value="ufinal">Tensión al final de línea (U₂)</option>
+          <option value="seccion">Sección del conductor (S)</option>
+          <option value="uinicio">Tensión en principio de línea (U₁)</option>
+        </select>
+      </div>
+
+    
+
+<div class="grid grid-cols-2 gap-2 text-xs">
+
+
+      <div>
+        <label>Longitud L (m)</label>
+        <input id="len" type="number" class="w-full border rounded p-1 input-clear" value="0">
+      </div>
+
+      <div>
+        <label>Potencia P (W)</label>
+        <input id="pow" type="number" class="w-full border rounded p-1 input-clear" value="0">
+      </div>
+
+      <div>
+        <label>Tensión U (V)</label>
+        <input id="volt" type="number" class="w-full border rounded p-1 input-clear" value="0">
+      </div>
+
+
+ <div>
+      <label>Sistema</label>
+      <select id="sistema" class="w-full border rounded px-2 py-1">
+        <option value="mono">Monofásico / CC</option>
+        <option value="tri">Trifásico</option>
+      </select>
+    </div>
+
+    <div>
+        <label>Material del conductor</label>
+        <select id="mat" class="w-full border rounded p-1">
+          <option value="cobre">Cobre</option>
+          <option value="aluminio">Aluminio</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label>Sección S (mm²)</label>
+        <input id="sec" type="number" class="w-full border rounded p-1 input-clear" value="0">
+      </div>
+
+     
+
+      
+
+
+
+      
+
+      <div>
+        <label>Temperatura (°C)</label>
+        <input id="temp" type="number" class="w-full border rounded p-1 input-clear" value="0">
+      </div>
+
+      <div>
+  <label>Conductividad γ</label>
+  <input id="gamma" type="number" step="any"
+         class="w-full border rounded p-1 input-clear"
+         placeholder="Ej: 44">
+</div>
+
+
+
+
+
+      <!-- 🔹 NUEVO BLOQUE CAÍDA DE TENSIÓN -->
+      <div>
+        <label>Caída de tensión</label>
+        <input id="caida" type="number" 
+               class="w-full border rounded p-1 input-clear" 
+               value="0">
+      </div>
+
+      <div>
+        <label>Unidad</label>
+        <select id="tipoCaida" class="w-full border rounded p-1">
+          <option value="voltios">Voltios (V)</option>
+          <option value="porcentaje" selected>Porcentaje (%)</option>
+        </select>
+      </div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- CONFIGURACIÓN AVANZADA -->
+<div class="col-span-2">
+
+  <button type="button"
+          onclick="toggleAvanzado()"
+          class="w-full text-left bg-gray-100 px-3 py-2 rounded text-xs font-semibold hover:bg-gray-200 transition">
+    ⚙ Parámetros avanzados (ρ y α)
+  </button>
+
+  <div id="bloqueAvanzado"
+       class="hidden mt-3 space-y-3">
+
+    <div>
+      <label class="text-xs">Resistividad ρ (Ω·mm²/m)</label>
+      <input id="rho" type="number" step="any"
+             class="w-full border rounded px-2 py-1 text-xs input-clear"
+             placeholder="Ej: 0.0225">
+    </div>
+
+    <div>
+      <label class="text-xs">Coeficiente de temperatura α</label>
+      <input id="alpha" type="number" step="any"
+             class="w-full border rounded px-2 py-1 text-xs input-clear"
+             placeholder="Cu: 0.00393 | Al: 0.00403">
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- CONFIGURACIÓN AVANZADA 2 -->
+
+ <!-- 🔌 COMPROBACIÓN POR INTENSIDAD ADMISIBLE -->
+<div class="col-span-2">
+
+  <button type="button"
+          onclick="toggleIntensidad()"
+          class="w-full text-left bg-gray-100 px-3 py-2 rounded text-xs font-semibold hover:bg-gray-200 transition">
+    🔌 Comprobación por intensidad admisible
+  </button>
+
+  <div id="bloqueIntensidad"
+       class="hidden mt-3 space-y-3 text-xs">
+
+  
+    <div>
+      <label>Método de instalación</label>
+      <select id="metodoInstalacion"
+              class="w-full border rounded px-2 py-1">
+        <option value="A">A – Empotrado</option>
+        <option value="B" selected>B – Tubo en pared</option>
+        <option value="C">C – Al aire</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Nº de circuitos agrupados</label>
+      <select id="agrupamiento"
+              class="w-full border rounded px-2 py-1">
+        <option value="1" selected>1 circuito</option>
+        <option value="2">2 circuitos</option>
+        <option value="3">3 circuitos</option>
+        <option value="4">4 circuitos</option>
+        <option value="5">5 circuitos</option>
+        <option value="6">6 circuitos</option>
+        <option value="7">Más de 6</option>
+      </select>
+    </div>
+
+
+    <!-- 🔹 NUEVO · Simultaneidad -->
+<div>
+  <label>Coeficiente de simultaneidad (Cs)</label>
+  <input id="simultaneidad" 
+         type="number" 
+         step="0.01"
+         value="1"
+         class="w-full border rounded px-2 py-1">
+</div>
+
+<!-- 🔹 NUEVO · Tipo de servicio -->
+<div>
+  <label>Tipo de servicio</label>
+  <select id="servicio"
+          class="w-full border rounded px-2 py-1">
+    <option value="normal">No continuo</option>
+    <option value="continuo">Continuo (>3h)</option>
+  </select>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+<!-- BOTÓN ABAJO -->
+    <div class="pt-2 pb-2">
+      <button onclick="iniciarCalculo()" 
+              class="w-full bg-blue-600 text-white py-2 rounded-lg text-base font-semibold hover:bg-blue-700 transition">
+        Calcular
+      </button>
+    </div>
+  </div>
+</div>
+    
+  </section>
+
+
+
+<!-- 2nd card - TABLA DE VALORES -->
+
+
+
+ <!-- CARD TABLA -->
+  <section class="min-w-full snap-start p-4 overflow-y-auto">
+      
+        <div class="bg-[#fdf6e3] p-4 rounded-xl shadow border border-yellow-500 max-w-sm mx-auto">
+
+          <!-- TU TABLA EXACTA AQUÍ -->
+
+    <h2 class="text-base font-semibold text-center mb-3">
+      Tabla 8.7 · Conductividad y coeficientes
+    </h2>
+
+    <table class="w-full text-center border-collapse text-xs">
+
+      <thead>
+        <tr class="bg-yellow-300 font-semibold">
+          <th class="border border-yellow-600 p-1 break-words">Material</th>
+          <th class="border border-yellow-600 p-1 break-words">γ 20°C</th>
+          <th class="border border-yellow-600 p-1 break-words">γ 40°C</th>
+          <th class="border border-yellow-600 p-1 break-words">γ 70°C</th>
+          <th class="border border-yellow-600 p-1 break-words">γ 90°C</th>
+          <th class="border border-yellow-600 p-1 break-words">α (°C⁻¹)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+  <tr class="bg-yellow-50">
+    <td class="border border-yellow-600 p-1 font-semibold break-words">Cobre</td>
+    <td class="border border-yellow-600 p-1 break-words">56</td>
+    <td class="border border-yellow-600 p-1 break-words">52</td>
+    <td class="border border-yellow-600 p-1 break-words">48</td>
+    <td class="border border-yellow-600 p-1 break-words">44</td>
+    <td class="border border-yellow-600 p-1 break-words text-[11px]">0.00392</td>
+  </tr>
+
+  <tr class="bg-yellow-100/40">
+    <td class="border border-yellow-600 p-1 font-semibold break-words">Aluminio</td>
+    <td class="border border-yellow-600 p-1 break-words">35</td>
+    <td class="border border-yellow-600 p-1 break-words">32</td>
+    <td class="border border-yellow-600 p-1 break-words">30</td>
+    <td class="border border-yellow-600 p-1 break-words">28</td>
+    <td class="border border-yellow-600 p-1 break-words text-[11px]">0.00403</td>
+  </tr>
+    </tbody>
+
+
+    </table>
+
+  </div>
+  </div>
+  </div>
+  </section>
+
+
+
+
+
+
+ <!-- PANTALLA 2: RESULTADO -->
+  <!-- PANTALLA 2: RESULTADO -->
+<section id="pantallaResultado" class="snap-start p-4">
+  
+  <div class="bg-white p-5 rounded-xl shadow flex-1 flex flex-col">
+
+    <!-- Título -->
+    <div class="border-b pb-3 mb-4">
+      <h2 id="titulo" class="text-lg font-semibold text-gray-800"></h2>
+    </div>
+
+    <!-- Resultado destacado -->
+    <div id="bloqueResultado"
+         class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4 hidden">
+    </div>
+
+    <!-- Explicación -->
+    <div id="explicacion"
+         class="space-y-4 text-sm text-gray-700 overflow-y-auto flex-1">
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+</main>
+
+<script src="bt19-aprendizaje.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+</html>

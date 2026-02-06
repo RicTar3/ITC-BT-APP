@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cálculo de Consumo Energético</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+</head>
+
+<body class="bg-gray-100">
+
+<header class="p-4 bg-white shadow sticky top-0 z-10">
+  <h1 class="text-xl font-bold">Cálculo de Consumo Energético</h1>
+</header>
+
+<main class="h-[calc(100dvh-72px)] overflow-y-auto p-4 bg-gray-100">
+
+<section class="bg-white p-6 rounded-2xl shadow max-w-xl mx-auto">
+
+<!-- Botón volver -->
+    <div class="mb-4">
+      <a href="index.html" 
+         class="inline-block bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+         ← Volver
+      </a>
+    </div>
+
+
+<h2 class="text-xl font-semibold mb-4">
+  Energía consumida (E)
+</h2>
+
+<div class="space-y-4 text-sm">
+
+<!-- POTENCIA -->
+<div>
+  <label>Potencia</label>
+  <div class="flex gap-2">
+    <input id="potencia" type="text" inputmode="decimal"
+           class="w-full border rounded p-2"
+           placeholder="Ej: 1500">
+    <select id="unidadPotencia"
+            class="border rounded p-2">
+      <option value="W">W</option>
+      <option value="kW">kW</option>
+    </select>
+  </div>
+</div>
+
+<!-- TIEMPO -->
+<div>
+  <label>Tiempo de uso</label>
+  <div class="flex gap-2">
+    <input id="tiempo" type="text" inputmode="decimal"
+           class="w-full border rounded p-2"
+           placeholder="Ej: 5">
+    <select id="unidadTiempo"
+            class="border rounded p-2">
+      <option value="h">Horas</option>
+      <option value="min">Minutos</option>
+    </select>
+  </div>
+</div>
+
+<!-- PRECIO OPCIONAL -->
+<div>
+  <label>Precio electricidad (€/kWh) – opcional</label>
+  <input id="precio" type="text" step="0.01" inputmode="decimal"
+         class="w-full border rounded p-2"
+         placeholder="Ej: 0.20">
+</div>
+
+<hr class="my-4">
+
+<!-- RESULTADO -->
+<p class="text-lg">
+  Energía:
+  <strong class="text-blue-600">
+    <span id="resultadoEnergia">0</span> 
+  </strong>
+</p>
+
+<p class="text-lg">
+  Coste:
+  <strong class="text-green-600">
+    <span id="resultadoCoste">0</span> 
+  </strong>
+</p>
+
+<!-- EXPLICACIÓN -->
+<div id="explicacionEnergia"
+     class="text-sm text-gray-700 border-t pt-4">
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="Consumo.js" defer></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+
+</body>
+</html>

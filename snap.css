@@ -1,0 +1,29 @@
+.screen { scroll-snap-align: start; }
+
+.slider {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card { scroll-snap-align: start; }
+
+main::-webkit-scrollbar,
+.slider::-webkit-scrollbar {
+  display: none;
+}
+main, .slider {
+  scrollbar-width: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+#itc10 {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.slider {
+  -webkit-overflow-scrolling: touch;
+}
